@@ -36,18 +36,19 @@ query_engine = index.as_query_engine(
     text_qa_template=PROMPT,
 )
 
-# 3. Poser la question
-question = " ".join(sys.argv[1:]) or "Qu'est-ce que la lemmatisation ?"
-print("Question :", question)
-print()
+if __name__ == "__main__":
+    # 3. Poser la question
+    question = " ".join(sys.argv[1:]) or "Qu'est-ce que la lemmatisation ?"
+    print("Question :", question)
+    print()
 
-reponse = query_engine.query(question)
-print("Réponse :", reponse)
-print()
+    reponse = query_engine.query(question)
+    print("Réponse :", reponse)
+    print()
 
-# 4. Montrer les passages utilisés (la "fenêtre" sur le RAG)
-print("Sources utilisées :")
-for rang, node in enumerate(reponse.source_nodes, start=1):
-    m = node.metadata
-    print(f"  {rang}. {m['source']} p.{m['page']}  (score {node.score:.3f})")
-    print("     ", node.text[:120].replace("\n", " "), "...")
+    # 4. Montrer les passages utilisés (la "fenêtre" sur le RAG)
+    print("Sources utilisées :")
+    for rang, node in enumerate(reponse.source_nodes, start=1):
+        m = node.metadata
+        print(f"  {rang}. {m['source']} p.{m['page']}  (score {node.score:.3f})")
+        print("     ", node.text[:120].replace("\n", " "), "...")

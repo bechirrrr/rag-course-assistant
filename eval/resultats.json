@@ -1,0 +1,224 @@
+{
+  "hit@1": 1.0,
+  "hit@3": 1.0,
+  "hit@5": 1.0,
+  "mrr": 1.0,
+  "details": [
+    {
+      "id": 1,
+      "type": "definition",
+      "rang": 1,
+      "trouves": [
+        "p33",
+        "p34",
+        "p10",
+        "p31",
+        "p35"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "definition",
+      "rang": 1,
+      "trouves": [
+        "p9",
+        "p52",
+        "p43",
+        "p40",
+        "p13"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "definition",
+      "rang": 1,
+      "trouves": [
+        "p26",
+        "p29",
+        "p28",
+        "p27",
+        "p25"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "definition",
+      "rang": 1,
+      "trouves": [
+        "p11",
+        "p14",
+        "p10",
+        "p33",
+        "p47"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "definition",
+      "rang": 1,
+      "trouves": [
+        "p30",
+        "p4",
+        "p2",
+        "p43",
+        "p10"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "definition",
+      "rang": 1,
+      "trouves": [
+        "p22",
+        "p21",
+        "p32",
+        "p23",
+        "p33"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "detail",
+      "rang": 1,
+      "trouves": [
+        "p2",
+        "p1",
+        "p8",
+        "p16",
+        "p12"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "detail",
+      "rang": 1,
+      "trouves": [
+        "p34",
+        "p28",
+        "p32",
+        "p33",
+        "p29"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "detail",
+      "rang": 1,
+      "trouves": [
+        "p13",
+        "p52",
+        "p46",
+        "p16",
+        "p30"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "detail",
+      "rang": 1,
+      "trouves": [
+        "p3",
+        "p4",
+        "p2",
+        "p5",
+        "p6"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "detail",
+      "rang": 1,
+      "trouves": [
+        "p46",
+        "p45",
+        "p49",
+        "p48",
+        "p44"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "detail",
+      "rang": 1,
+      "trouves": [
+        "p4",
+        "p11",
+        "p6",
+        "p14",
+        "p7"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "difference",
+      "rang": 1,
+      "trouves": [
+        "p33",
+        "p31",
+        "p34",
+        "p51",
+        "p52"
+      ]
+    },
+    {
+      "id": 14,
+      "type": "difference",
+      "rang": 1,
+      "trouves": [
+        "p49",
+        "p45",
+        "p46",
+        "p50",
+        "p53"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "difference",
+      "rang": 1,
+      "trouves": [
+        "p17",
+        "p16",
+        "p3",
+        "p7",
+        "p28"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "reformulation",
+      "rang": 1,
+      "trouves": [
+        "p2",
+        "p10",
+        "p15",
+        "p11",
+        "p1"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "reformulation",
+      "rang": 1,
+      "trouves": [
+        "p42",
+        "p53",
+        "p2",
+        "p30",
+        "p40"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "reformulation",
+      "rang": 1,
+      "trouves": [
+        "p7",
+        "p8",
+        "p9",
+        "p3",
+        "p2"
+      ]
+    }
+  ]
+}
