@@ -1,66 +1,352 @@
 [
-  {"id": 1, "type": "definition", "question": "Qu'est-ce que la lemmatisation ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [33],
-   "reponse_attendue": "Extraire la forme de base d'un mot, comme dans un dictionnaire (is -> be)."},
-  {"id": 2, "type": "definition", "question": "En quoi consiste la back-translation ?",
-   "source": "Cours_TALN_chap_4.pdf", "pages": [9],
-   "reponse_attendue": "Traduire une phrase dans une autre langue, puis la retraduire dans la langue d'origine."},
-  {"id": 3, "type": "definition", "question": "Qu'est-ce que la tokenisation ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [26],
-   "reponse_attendue": "Découper un texte en entités plus petites appelées tokens (mots, caractères ou sous-mots)."},
-  {"id": 4, "type": "definition", "question": "Qu'est-ce qu'un morphème ?",
-   "source": "Cours_TALN_chap_3.pdf", "pages": [11],
-   "reponse_attendue": "Le plus petit élément significatif d'un mot (chanteurs = chant- + -eur- + -s)."},
-  {"id": 5, "type": "definition", "question": "Que sont les mots vides en TALN ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [30],
-   "reponse_attendue": "Des mots qui n'ajoutent pas beaucoup de sens à une phrase et peuvent être ignorés (stopwords)."},
-  {"id": 6, "type": "definition", "question": "À quoi sert l'analyse syntaxique ?",
-   "source": "Cours_TALN_chap_3.pdf", "pages": [21, 22],
-   "reponse_attendue": "Décider si une phrase est syntaxiquement correcte et lui associer une structure syntaxique (rôle de chaque mot)."},
-
-  {"id": 7, "type": "detail", "question": "Quel pourcentage des données est structuré ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [2],
-   "reponse_attendue": "20 %."},
-  {"id": 8, "type": "detail", "question": "Quel lemmatiseur NLTK propose-t-il pour l'anglais ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [34],
-   "reponse_attendue": "WordNetLemmatizer."},
-  {"id": 9, "type": "detail", "question": "Combien de significations de verbe a le mot anglais set ?",
-   "source": "Cours_TALN_chap_3.pdf", "pages": [13],
-   "reponse_attendue": "120 significations de verbes (et 57 de noms)."},
-  {"id": 10, "type": "detail", "question": "Quelle bibliothèque Python permet de convertir la parole en texte ?",
-   "source": "Cours_TALN_chap_3.pdf", "pages": [3],
-   "reponse_attendue": "SpeechRecognition."},
-  {"id": 11, "type": "detail", "question": "Quelles sont les deux façons d'entraîner Word2Vec ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [46],
-   "reponse_attendue": "CBOW (le contexte prédit le mot) et Skip-gram (le mot prédit le contexte)."},
-  {"id": 12, "type": "detail", "question": "Quelles sont les trois grandes catégories de méthodes de Data Augmentation ?",
-   "source": "Cours_TALN_chap_4.pdf", "pages": [4],
-   "reponse_attendue": "Modifications lexicales, modifications syntaxiques, modifications au niveau du corpus."},
-
-  {"id": 13, "type": "difference", "question": "Quelle est la différence entre le stemming et la lemmatisation ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [31, 33, 34],
-   "reponse_attendue": "Le stemming réduit au radical, pas forcément un mot du dictionnaire ; la lemmatisation donne la forme du dictionnaire et utilise la catégorie grammaticale (POS)."},
-  {"id": 14, "type": "difference", "question": "En quoi FastText est-il différent de Word2Vec ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [49],
-   "reponse_attendue": "FastText s'entraîne sur des n-grammes de caractères (sous-mots) et gère mieux les mots rares ; Word2Vec s'entraîne sur des mots."},
-  {"id": 15, "type": "difference", "question": "Quelle est la différence entre NLU et NLG ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [16, 17],
-   "reponse_attendue": "Le NLU lit et interprète le langage (comprendre) ; le NLG produit du texte en langage naturel (générer)."},
-
-  {"id": 16, "type": "reformulation", "question": "Comment créer plus de données d'entraînement quand on a peu de textes annotés ?",
-   "source": "Cours_TALN_chap_4.pdf", "pages": [1, 2],
-   "reponse_attendue": "Par la Data Augmentation : générer de nouvelles données artificielles à partir des données existantes."},
-  {"id": 17, "type": "reformulation", "question": "Comment donner plus de poids aux mots rares qu'aux mots fréquents comme « le » ?",
-   "source": "Cours_TALN_chap_1_&_2.pdf", "pages": [40, 41, 42],
-   "reponse_attendue": "Avec TF-IDF, qui pénalise les mots fréquents dans tout le corpus."},
-  {"id": 18, "type": "reformulation", "question": "Comment récupérer le texte d'une photo de document scanné ?",
-   "source": "Cours_TALN_chap_3.pdf", "pages": [7],
-   "reponse_attendue": "Avec l'OCR (reconnaissance optique des caractères), combinée à des méthodes NLP."},
-
-  {"id": 19, "type": "hors_cours", "question": "Qu'est-ce qu'un thread en système d'exploitation ?",
-   "source": null, "pages": [],
-   "reponse_attendue": "Le système doit dire qu'il ne trouve pas l'information dans le cours."},
-  {"id": 20, "type": "hors_cours", "question": "Qu'est-ce que la normalisation d'une base de données relationnelle ?",
-   "source": null, "pages": [],
-   "reponse_attendue": "Le système doit dire qu'il ne trouve pas l'information dans le cours."}
+ {
+  "id": 1,
+  "type": "definition",
+  "question": "Qu'est-ce que la lemmatisation ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   33
+  ],
+  "reponse_attendue": "Extraire la forme de base d'un mot, comme dans un dictionnaire (is -> be)."
+ },
+ {
+  "id": 2,
+  "type": "definition",
+  "question": "En quoi consiste la back-translation ?",
+  "source": "Cours_TALN_chap_4.pdf",
+  "pages": [
+   9
+  ],
+  "reponse_attendue": "Traduire une phrase dans une autre langue, puis la retraduire dans la langue d'origine."
+ },
+ {
+  "id": 3,
+  "type": "definition",
+  "question": "Qu'est-ce que la tokenisation ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   26
+  ],
+  "reponse_attendue": "Découper un texte en entités plus petites appelées tokens (mots, caractères ou sous-mots)."
+ },
+ {
+  "id": 4,
+  "type": "definition",
+  "question": "Qu'est-ce qu'un morphème ?",
+  "source": "Cours_TALN_chap_3.pdf",
+  "pages": [
+   11
+  ],
+  "reponse_attendue": "Le plus petit élément significatif d'un mot (chanteurs = chant- + -eur- + -s)."
+ },
+ {
+  "id": 5,
+  "type": "definition",
+  "question": "Que sont les mots vides en TALN ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   30
+  ],
+  "reponse_attendue": "Des mots qui n'ajoutent pas beaucoup de sens à une phrase et peuvent être ignorés (stopwords)."
+ },
+ {
+  "id": 6,
+  "type": "definition",
+  "question": "À quoi sert l'analyse syntaxique ?",
+  "source": "Cours_TALN_chap_3.pdf",
+  "pages": [
+   21,
+   22
+  ],
+  "reponse_attendue": "Décider si une phrase est syntaxiquement correcte et lui associer une structure syntaxique (rôle de chaque mot)."
+ },
+ {
+  "id": 7,
+  "type": "detail",
+  "question": "Quel pourcentage des données est structuré ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   2
+  ],
+  "reponse_attendue": "20 %."
+ },
+ {
+  "id": 8,
+  "type": "detail",
+  "question": "Quel lemmatiseur NLTK propose-t-il pour l'anglais ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   34
+  ],
+  "reponse_attendue": "WordNetLemmatizer."
+ },
+ {
+  "id": 9,
+  "type": "detail",
+  "question": "Combien de significations de verbe a le mot anglais set ?",
+  "source": "Cours_TALN_chap_3.pdf",
+  "pages": [
+   13
+  ],
+  "reponse_attendue": "120 significations de verbes (et 57 de noms)."
+ },
+ {
+  "id": 10,
+  "type": "detail",
+  "question": "Quelle bibliothèque Python permet de convertir la parole en texte ?",
+  "source": "Cours_TALN_chap_3.pdf",
+  "pages": [
+   3
+  ],
+  "reponse_attendue": "SpeechRecognition."
+ },
+ {
+  "id": 11,
+  "type": "detail",
+  "question": "Quelles sont les deux façons d'entraîner Word2Vec ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   46
+  ],
+  "reponse_attendue": "CBOW (le contexte prédit le mot) et Skip-gram (le mot prédit le contexte)."
+ },
+ {
+  "id": 12,
+  "type": "detail",
+  "question": "Quelles sont les trois grandes catégories de méthodes de Data Augmentation ?",
+  "source": "Cours_TALN_chap_4.pdf",
+  "pages": [
+   4
+  ],
+  "reponse_attendue": "Modifications lexicales, modifications syntaxiques, modifications au niveau du corpus."
+ },
+ {
+  "id": 13,
+  "type": "difference",
+  "question": "Quelle est la différence entre le stemming et la lemmatisation ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   31,
+   33,
+   34
+  ],
+  "reponse_attendue": "Le stemming réduit au radical, pas forcément un mot du dictionnaire ; la lemmatisation donne la forme du dictionnaire et utilise la catégorie grammaticale (POS)."
+ },
+ {
+  "id": 14,
+  "type": "difference",
+  "question": "En quoi FastText est-il différent de Word2Vec ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   49
+  ],
+  "reponse_attendue": "FastText s'entraîne sur des n-grammes de caractères (sous-mots) et gère mieux les mots rares ; Word2Vec s'entraîne sur des mots."
+ },
+ {
+  "id": 15,
+  "type": "difference",
+  "question": "Quelle est la différence entre NLU et NLG ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   16,
+   17
+  ],
+  "reponse_attendue": "Le NLU lit et interprète le langage (comprendre) ; le NLG produit du texte en langage naturel (générer)."
+ },
+ {
+  "id": 16,
+  "type": "reformulation",
+  "question": "Comment créer plus de données d'entraînement quand on a peu de textes annotés ?",
+  "source": "Cours_TALN_chap_4.pdf",
+  "pages": [
+   1,
+   2
+  ],
+  "reponse_attendue": "Par la Data Augmentation : générer de nouvelles données artificielles à partir des données existantes."
+ },
+ {
+  "id": 17,
+  "type": "reformulation",
+  "question": "Comment donner plus de poids aux mots rares qu'aux mots fréquents comme « le » ?",
+  "source": "Cours_TALN_chap_1_&_2.pdf",
+  "pages": [
+   40,
+   41,
+   42
+  ],
+  "reponse_attendue": "Avec TF-IDF, qui pénalise les mots fréquents dans tout le corpus."
+ },
+ {
+  "id": 18,
+  "type": "reformulation",
+  "question": "Comment récupérer le texte d'une photo de document scanné ?",
+  "source": "Cours_TALN_chap_3.pdf",
+  "pages": [
+   7
+  ],
+  "reponse_attendue": "Avec l'OCR (reconnaissance optique des caractères), combinée à des méthodes NLP."
+ },
+ {
+  "id": 19,
+  "type": "hors_cours",
+  "question": "Qu'est-ce qu'un thread en système d'exploitation ?",
+  "source": null,
+  "pages": [],
+  "reponse_attendue": "Le système doit dire qu'il ne trouve pas l'information dans le cours."
+ },
+ {
+  "id": 20,
+  "type": "hors_cours",
+  "question": "Qu'est-ce que la normalisation d'une base de données relationnelle ?",
+  "source": null,
+  "pages": [],
+  "reponse_attendue": "Le système doit dire qu'il ne trouve pas l'information dans le cours."
+ },
+ {
+  "id": 21,
+  "type": "definition",
+  "question": "Qu'est-ce qu'un curseur en T-SQL ?",
+  "source": "tsql_1_intro.pdf",
+  "pages": [
+   30
+  ],
+  "reponse_attendue": "Un objet qui permet de parcourir ligne par ligne le résultat d'une requête."
+ },
+ {
+  "id": 22,
+  "type": "definition",
+  "question": "Qu'est-ce qu'une vue en SQL Server ?",
+  "source": "tsql_2_vues.pdf",
+  "pages": [
+   3
+  ],
+  "reponse_attendue": "Une requête SQL enregistrée comme objet de la base, qui affiche des données sans les stocker."
+ },
+ {
+  "id": 23,
+  "type": "definition",
+  "question": "Qu'est-ce qu'un trigger ?",
+  "source": "tsql_3_triggers.pdf",
+  "pages": [
+   3
+  ],
+  "reponse_attendue": "Un objet qui s'exécute automatiquement en réponse à un événement (INSERT, UPDATE, DELETE...) sur une table ou une vue."
+ },
+ {
+  "id": 24,
+  "type": "detail",
+  "question": "Quelles sont les étapes pour utiliser un curseur ?",
+  "source": "tsql_1_intro.pdf",
+  "pages": [
+   31
+  ],
+  "reponse_attendue": "Déclaration, ouverture, lecture avec FETCH, fermeture, libération."
+ },
+ {
+  "id": 25,
+  "type": "detail",
+  "question": "À partir de quelle sévérité d'erreur un trigger AFTER provoque-t-il un rollback automatique ?",
+  "source": "tsql_3_triggers.pdf",
+  "pages": [
+   20
+  ],
+  "reponse_attendue": "À partir de la sévérité 19."
+ },
+ {
+  "id": 26,
+  "type": "detail",
+  "question": "Que contient la table deleted lors d'un UPDATE ?",
+  "source": "tsql_3_triggers.pdf",
+  "pages": [
+   17,
+   18
+  ],
+  "reponse_attendue": "Les anciennes valeurs des colonnes, avant la mise à jour."
+ },
+ {
+  "id": 27,
+  "type": "detail",
+  "question": "Quelle fonction permet à un trigger DDL de récupérer les informations sur l'événement ?",
+  "source": "tsql_3_triggers.pdf",
+  "pages": [
+   15
+  ],
+  "reponse_attendue": "EVENTDATA(), qui renvoie les détails au format XML."
+ },
+ {
+  "id": 28,
+  "type": "detail",
+  "question": "Qu'est-ce qu'une vue indexée ?",
+  "source": "tsql_2_vues.pdf",
+  "pages": [
+   8,
+   11
+  ],
+  "reponse_attendue": "Une vue matérialisée avec un index unique, stockée physiquement pour accélérer les requêtes."
+ },
+ {
+  "id": 29,
+  "type": "difference",
+  "question": "Quelle est la différence entre un trigger AFTER et un trigger INSTEAD OF ?",
+  "source": "tsql_3_triggers.pdf",
+  "pages": [
+   8,
+   9,
+   11
+  ],
+  "reponse_attendue": "AFTER s'exécute après l'opération DML réussie ; INSTEAD OF s'exécute à la place de l'opération."
+ },
+ {
+  "id": 30,
+  "type": "difference",
+  "question": "Quelle est la différence entre un trigger et une procédure stockée ?",
+  "source": "tsql_3_triggers.pdf",
+  "pages": [
+   7
+  ],
+  "reponse_attendue": "Le trigger s'exécute automatiquement sur un événement ; la procédure doit être appelée explicitement."
+ },
+ {
+  "id": 31,
+  "type": "difference",
+  "question": "Quelle différence entre une fonction de table inline et une fonction de table multidéclaration ?",
+  "source": "tsql_1_intro.pdf",
+  "pages": [
+   40,
+   41,
+   42,
+   43
+  ],
+  "reponse_attendue": "L'inline utilise une seule instruction SELECT ; la multidéclaration remplit une variable de table avec plusieurs instructions."
+ },
+ {
+  "id": 32,
+  "type": "reformulation",
+  "question": "Comment empêcher qu'une modification faite à travers une vue fasse sortir la ligne des critères de cette vue ?",
+  "source": "tsql_2_vues.pdf",
+  "pages": [
+   16
+  ],
+  "reponse_attendue": "Avec WITH CHECK OPTION."
+ },
+ {
+  "id": 33,
+  "type": "reformulation",
+  "question": "Pourquoi a-t-on besoin d'un langage procédural en plus de SQL ?",
+  "source": "tsql_1_intro.pdf",
+  "pages": [
+   3
+  ],
+  "reponse_attendue": "SQL est déclaratif, sans variables ni boucles ; T-SQL ajoute les structures de contrôle."
+ },
+ {
+  "id": 34,
+  "type": "piege",
+  "question": "Quels sont les types de fonctions en T-SQL ?",
+  "source": "tsql_1_intro.pdf",
+  "pages": [
+   37
+  ],
+  "reponse_attendue": "Les fonctions scalaires et les fonctions de table (piège : le cours de TALN parle aussi de fonctions Python/NLTK)."
+ }
 ]

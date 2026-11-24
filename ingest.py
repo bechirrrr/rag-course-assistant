@@ -14,7 +14,11 @@ DOSSIER_PDF = Path("data/raw")
 DOSSIER_CHROMA = "chroma_db"
 NOM_COLLECTION = "courses"
 
-LIGNES_A_SUPPRIMER = {"IDS 4/IGL 5", "Dr. Asma MEKKI"}
+LIGNES_A_SUPPRIMER = {
+    "IDS 4/IGL 5",                   # TALN : pied de slide
+    "Dr. Asma MEKKI",                # TALN : pied de slide
+    "Du déclaratif au procédural:",  # T-SQL : titre générique sur 49 slides sur 52
+}
 
 
 # ---------- 1. Nettoyage ----------

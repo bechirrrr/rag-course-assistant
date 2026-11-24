@@ -36,7 +36,7 @@ for q in questions:
         continue  # hors cours : pas de bonne page à trouver
     resultats = retriever.retrieve(q["question"])
     rang = rang_premiere_bonne_page(q, resultats)
-    trouves = [f"p{n.metadata['page']}" for n in resultats]
+    trouves = [f"{n.metadata['source'].removesuffix('.pdf')}:p{n.metadata['page']}" for n in resultats]
     lignes.append({"id": q["id"], "type": q["type"], "rang": rang, "trouves": trouves})
     print(f"Q{q['id']:>2} [{q['type']:<13}] rang={str(rang):<4} "
           f"attendu={q['pages']}  trouvé={trouves}")
