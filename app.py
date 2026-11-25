@@ -14,7 +14,7 @@ st.set_page_config(page_title="Assistant de révision", page_icon="📚")
 # ---------- 1. Charger l'index une seule fois ----------
 @st.cache_resource
 def charger_index():
-    collection = chromadb.PersistentClient(path="chroma_db").get_collection("courses")
+    collection = chromadb.PersistentClient(path=config.CHROMA_PATH).get_collection("courses")
     index = VectorStoreIndex.from_vector_store(ChromaVectorStore(chroma_collection=collection))
     metadonnees = collection.get(include=["metadatas"])["metadatas"]
     cours = sorted({m["course"] for m in metadonnees})

@@ -1,0 +1,62 @@
+services:
+  # Le serveur de modèles
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama_models:/root/.ollama   # les modèles restent téléchargés entre deux lancements
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    # Avec une carte NVIDIA, décommenter pour utiliser le GPU :
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  # Télécharge les deux modèles une fois, puis s'arrête
+  ollama-init:
+    image: ollama/ollama
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull bge-m3 && ollama pull llama3.2:3b"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+  # L'API FastAPI
+  api:
+    build: .
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - CHROMA_PATH=/app/chroma_db
+    volumes:
+      - ./chroma_db:/app/chroma_db   # la base de vecteurs reste sur ton disque
+      - ./data:/app/data             # les PDF, pour lancer l'ingestion
+    ports:
+      - "8000:8000"
+    depends_on:
+      ollama-init:
+        condition: service_completed_successfully
+
+  # L'interface Streamlit
+  ui:
+    build: .
+    command: ["streamlit", "run", "app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - CHROMA_PATH=/app/chroma_db
+    volumes:
+      - ./chroma_db:/app/chroma_db
+    ports:
+      - "8501:8501"
+    depends_on:
+      ollama-init:
+        condition: service_completed_successfully
+
+volumes:
+  ollama_models:

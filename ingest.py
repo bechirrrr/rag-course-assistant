@@ -11,7 +11,7 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 import config  # configure Settings.llm et Settings.embed_model (Ollama)
 
 DOSSIER_PDF = Path("data/raw")
-DOSSIER_CHROMA = "chroma_db"
+DOSSIER_CHROMA = config.CHROMA_PATH
 NOM_COLLECTION = "courses"
 
 LIGNES_A_SUPPRIMER = {

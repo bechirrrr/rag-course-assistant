@@ -15,7 +15,7 @@ K = 5  # on regarde les 5 premiers résultats
 with open("eval/questions.json", encoding="utf-8") as f:
     questions = json.load(f)
 
-collection = chromadb.PersistentClient(path="chroma_db").get_collection("courses")
+collection = chromadb.PersistentClient(path=config.CHROMA_PATH).get_collection("courses")
 index = VectorStoreIndex.from_vector_store(ChromaVectorStore(chroma_collection=collection))
 retriever = index.as_retriever(similarity_top_k=K)
 
