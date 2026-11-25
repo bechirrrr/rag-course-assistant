@@ -2,6 +2,9 @@ services:
   # Le serveur de modèles
   ollama:
     image: ollama/ollama
+    environment:
+      - OLLAMA_MAX_LOADED_MODELS=1    # un seul modèle en mémoire à la fois (économise ≈ 1,2 Go)
+      - OLLAMA_NUM_PARALLEL=1         # une seule requête à la fois (moins de mémoire de contexte)
     volumes:
       - ollama_models:/root/.ollama   # les modèles restent téléchargés entre deux lancements
     healthcheck:
