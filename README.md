@@ -1,5 +1,7 @@
 # RAG Course Assistant
 
+[![CI](https://github.com/bechirrrr/rag-course-assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/bechirrrr/rag-course-assistant/actions/workflows/ci.yml)
+
 Assistant de révision qui répond aux questions sur mes supports de cours (PDF) en **citant le fichier et la page** de chaque réponse. Tout tourne **en local** : aucun document ne quitte l'ordinateur.
 
 ![Interface de l'assistant](docs/demo.png)
@@ -49,8 +51,39 @@ flowchart LR
 | Base vectorielle | Chroma (persistante, distance cosinus) |
 | Lecture des PDF | PyMuPDF |
 | Interface | Streamlit |
+| API | FastAPI, validation Pydantic |
+| Tests | pytest (15 tests, sans Ollama ni base vectorielle) |
+| Déploiement | Docker Compose (Ollama, API, interface) |
+| Intégration continue | GitHub Actions : tests et construction de l'image à chaque push |
 
-## Installation
+## Lancer avec Docker
+
+Prérequis : Docker Desktop. Une base `chroma_db/` et des PDF dans `data/raw/` (voir plus bas).
+
+```bash
+docker compose up ollama-init                    # télécharge les modèles une fois (≈ 3,2 Go)
+docker compose up --build -d                     # Ollama + API + interface
+docker compose run --rm api python ingest.py     # (re)construire l'index dans Docker
+```
+
+| Service | Adresse |
+| --- | --- |
+| API (documentation interactive) | http://localhost:8000/docs |
+| Interface Streamlit | http://localhost:8501 |
+
+```mermaid
+flowchart LR
+    O[ollama<br/>bge-m3 + llama3.2] -->|sain| I[ollama-init<br/>télécharge les modèles]
+    I -->|terminé| A[api :8000]
+    I -->|terminé| U[ui :8501]
+    A --- C[(volume chroma_db)]
+    U --- C
+    O --- M[(volume ollama_models)]
+```
+
+Les services se joignent par leur nom (`http://ollama:11434`), configuré par les variables d'environnement `OLLAMA_URL` et `CHROMA_PATH`.
+
+## Installation locale (sans Docker)
 
 Prérequis : Python 3.11+ et [Ollama](https://ollama.com/download).
 
@@ -83,10 +116,45 @@ Les PDF de cours ne sont pas publiés dans ce dépôt (`data/raw/` est ignoré p
 python ingest.py                                  # lit les PDF et remplit Chroma
 python ask.py "Qu'est-ce que la lemmatisation ?"  # une question en ligne de commande
 streamlit run app.py                              # interface web (http://localhost:8501)
+uvicorn api:app --reload                          # API (http://localhost:8000/docs)
+pytest                                            # tests automatiques
 python evaluate.py                                # mesure la recherche sur eval/questions.json
 python evaluate.py --llm                          # + vérifie les questions hors cours
 python mesurer_pages.py                           # taille des pages en tokens
 ```
+
+## API
+
+| Route | Rôle |
+| --- | --- |
+| `GET /health` | Vérifie que l'API tourne |
+| `GET /courses` | Liste les cours indexés |
+| `POST /ask` | Répond à une question, avec ses sources |
+
+```http
+POST /ask
+{"question": "Qu'est-ce qu'un curseur ?", "course": "tsql", "top_k": 3}
+```
+
+```json
+{
+  "answer": "Un curseur permet de parcourir ligne par ligne le résultat d'une requête...",
+  "sources": [
+    {"source": "tsql_1_intro.pdf", "page": 30, "course": "tsql", "score": 0.74, "extrait": "..."}
+  ]
+}
+```
+
+Les entrées sont validées par Pydantic : question d'au moins 3 caractères, `top_k` entre 1 et 10 (erreur 422 sinon), cours inconnu → 404.
+
+## Tests
+
+`pytest` lance 15 tests en quelques secondes, **sans Ollama ni base Chroma** : le module RAG est remplacé par une fausse version (`monkeypatch`). Ils vérifient les routes, la validation des entrées et la fonction de nettoyage. La qualité des réponses est mesurée à part, par `evaluate.py`.
+
+| Outil | Ce qu'il vérifie | Besoin d'Ollama |
+| --- | --- | --- |
+| `pytest` | Le code : API, validation, nettoyage | Non |
+| `evaluate.py` | La recherche trouve les bonnes pages | Oui |
 
 ## Choix techniques
 
@@ -106,7 +174,6 @@ python mesurer_pages.py                           # taille des pages en tokens
 
 ## Pistes d'amélioration
 
-- API FastAPI et conteneurisation Docker
 - Recherche hybride (BM25 + vecteurs) et reranker
 - Chat multi-tours et génération de quiz à partir d'un chapitre
 - OCR pour les slides contenant du code en image
@@ -118,10 +185,16 @@ python mesurer_pages.py                           # taille des pages en tokens
 ├── ingest.py          # PDF -> nettoyage -> chunks -> embeddings -> Chroma
 ├── ask.py             # question en ligne de commande, avec sources
 ├── app.py             # interface Streamlit
+├── rag.py             # cœur du RAG (recherche + réponse), utilisé par l'API
+├── api.py             # API FastAPI
 ├── evaluate.py        # hit rate et MRR sur le jeu de test
 ├── mesurer_pages.py   # taille des pages en tokens
 ├── test_setup.py      # vérification de l'installation
 ├── voir_page.py       # visualiser le nettoyage d'une page
+├── tests/             # tests pytest
+├── Dockerfile
+├── docker-compose.yml
+├── .github/workflows/ci.yml
 ├── eval/questions.json
 └── docs/demo.png
 ```
