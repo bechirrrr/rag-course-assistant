@@ -24,19 +24,19 @@ PROMPT = PromptTemplate(
     "Réponse : "
 )
 
-# 1. Se connecter à la base Chroma déjà remplie par ingest.py
-client = chromadb.PersistentClient(path="chroma_db")
-collection = client.get_collection("courses")
-vector_store = ChromaVectorStore(chroma_collection=collection)
-index = VectorStoreIndex.from_vector_store(vector_store)
-
-# 2. Créer le moteur de questions
-query_engine = index.as_query_engine(
-    similarity_top_k=TOP_K,
-    text_qa_template=PROMPT,
-)
-
 if __name__ == "__main__":
+    # 1. Se connecter à la base Chroma déjà remplie par ingest.py
+    client = chromadb.PersistentClient(path=config.CHROMA_PATH)
+    collection = client.get_collection("courses")
+    vector_store = ChromaVectorStore(chroma_collection=collection)
+    index = VectorStoreIndex.from_vector_store(vector_store)
+
+    # 2. Créer le moteur de questions
+    query_engine = index.as_query_engine(
+        similarity_top_k=TOP_K,
+        text_qa_template=PROMPT,
+    )
+
     # 3. Poser la question
     question = " ".join(sys.argv[1:]) or "Qu'est-ce que la lemmatisation ?"
     print("Question :", question)

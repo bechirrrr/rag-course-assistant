@@ -7,3 +7,5 @@ pymupdf>=2.1
 streamlit
 fastapi
 uvicorn
+pytest
+httpx
