@@ -1,5 +1,4 @@
 import config
-import config
 from llama_index.core import Settings
 
 # 1. Test du modèle d'embeddings
